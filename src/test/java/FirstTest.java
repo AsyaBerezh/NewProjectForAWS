@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
 /*****************************************************************************
  * Author:      Onur Baskirt
  * Description: This is the first Selenium TestNG test.
@@ -24,7 +24,8 @@ public class FirstTest {
     @BeforeMethod
     public void setupTest (){
         //Create a new ChromeDriver
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver");
+        driver = new FirefoxDriver();
 
         //Go to www.swtestacademy.com
         driver.navigate().to(testURL);
