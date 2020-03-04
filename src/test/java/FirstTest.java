@@ -10,12 +10,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
-/*****************************************************************************
- * Author:      Onur Baskirt
- * Description: This is the first Selenium TestNG test.
- *              It opens swtestacademy homepage and prints and checks its title.
- *******************************************************************************/
-
+ 
 public class FirstTest {
 
     //-----------------------------------Global Variables-----------------------------------
