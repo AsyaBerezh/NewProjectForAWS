@@ -7,7 +7,9 @@ import org.testng.annotations.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import javax.security.auth.login.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.chrome.ChromeOptions;
 /*****************************************************************************
  * Author:      Onur Baskirt
  * Description: This is the first Selenium TestNG test.
@@ -22,8 +24,15 @@ public class FirstTest {
 
     @BeforeClass
     public void setUp() {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.setPageLoadStrategy(PageLoadStrategy.NONE);
+
+        System.setProperty("webdriver.chrome.driver", getPathToDriver());
+        driver = new ChromeDriver(options);
     }
 
     @Test
@@ -33,7 +42,19 @@ public class FirstTest {
         String expectedPageTitle = "Google";
         Assert.assertTrue(driver.getTitle().contains(expectedPageTitle), "Test Failed");
     }
-
+    private String getPathToDriver() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        if(osName.contains("win")) {
+            return this.getClass().getResource("/chromedriver_windows32/chromedriver.exe").getPath();
+        }
+        if(osName.contains("mac")) {
+            return this.getClass().getResource("/chromedriver_mac64/chromedriver").getPath();
+        }
+        if(osName.contains("nux")) {
+            return "src/test/resources/chromedriver_linux64/chromedriver";
+        }
+        throw new RuntimeException("Your system type was not detected! Please download and set chromedriver by yourself");
+    }
     @Test
     public void Seleniumtest2() {
         System.out.println("In test 2");
