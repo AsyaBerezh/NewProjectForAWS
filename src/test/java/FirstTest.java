@@ -10,10 +10,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
- 
+
 public class FirstTest {
 
-    //-----------------------------------Global Variables-----------------------------------
     //Declare a Webdriver variable
     public WebDriver driver;
 
